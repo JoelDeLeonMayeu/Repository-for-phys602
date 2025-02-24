@@ -1,52 +1,46 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 import numpy as np
+#Hmmm this code is in french, I'll start updating it to english
 
-
-#début de la définition de ma fonction
+#Function to draw spirograph-like patern
 def Spirographe(R,r,d,phi=0, color='k'):
     
-    #listes des coordonnées des points de la courbe
+    #lists to host coordinates of points of curve
     x=[]
     y=[]
     
-    #création de ma variable m pour trouver n plus tard
+    #dummy variable for now
     m=1
     
-    #boucle pour trouver n (voir formules dans le labo)
+    #
     while True:
         
-        #On vérifie si les données entrées par l'utilisateur
-        #sont trop grosses. Si oui, la fonction renvoit un
-        #message d'erreur et arrête la boucle.
+        #Verification that the user-inserted data are valid
         if r>1000 or R>1000 or d>1000:
             print('Erreur: données trop larges')
             n=0
             break
         
-        #Équation à résoudre pour trouver n
+        #Equation to solve to find n
         n=r/(R-r)*m
         
-        #Si n est un nombre entier (pas de reste lorsqu'on
-        #divise par 0), on a réussit! On garde la valeur
-        #qu'on a présentement et on coupe la boucle
+        #If n in an integer stop
         if n%1==0:
             break
         
-        #Si n n'est pas un nombre entier, on augmente la 
-        #valeur de m de 1 et on recommence!
+        #If n isnt an integer continue
         else:
             m+=1
             
-    #On veut faire des calculs avec n donc...
+    #
     n=int(n)
     
-    #Honnêtement, je pensais qu'on était OBLIGÉ de travailler 
-    #avec les arrays alors voilà
+    #Arrays now because old me's reflex was to use lists
     x=np.array(x)
     y=np.array(y)
     
-    #mon choix de nombre de pas pour theta est 1 par degré
+    #
     theta=0
     for i in range(360*n+1):
         theta+=1
